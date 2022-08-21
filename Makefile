@@ -24,6 +24,3 @@ lint: flake mypy pylint
 
 manage:
 	$(MANAGE_RUN) $(filter-out $@,$(MAKECMDGOALS))
-
-%: # Ignore unknown commands and extra params
-	@:
