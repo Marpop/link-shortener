@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   production_postgres_data: {}
@@ -9,7 +9,7 @@ services:
   django:
     build:
       context: .
-      dockerfile: ./compose/production/django/Dockerfile
+      dockerfile: ./docker/production/django/Dockerfile
     image: link_shortener_production_django
     platform: linux/x86_64
     depends_on:
@@ -23,7 +23,7 @@ services:
   postgres:
     build:
       context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
+      dockerfile: ./docker/production/postgres/Dockerfile
     image: link_shortener_production_postgres
     volumes:
       - production_postgres_data:/var/lib/postgresql/data:Z
@@ -34,7 +34,7 @@ services:
   traefik:
     build:
       context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
+      dockerfile: ./docker/production/traefik/Dockerfile
     image: link_shortener_production_traefik
     depends_on:
       - django
