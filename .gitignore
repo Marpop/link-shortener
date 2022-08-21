@@ -269,7 +269,7 @@ Session.vim
 tags
 
 ### Project template
-link_shortener/media/
+apps/media/
 
 .pytest_cache/
 .ipython/
