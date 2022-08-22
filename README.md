@@ -12,18 +12,18 @@ Simple link shortening django app
 
 ## Basic Commands
 
-### Setting up super user
+### Test and coverage
 
-      make manage createsuperuser
+     make test
+     make coverage
 
 ### Type checks and linting (flake8 and pylint)
 
      make lint
 
-### Test and coverage
+### To access admin panel create admin user
 
-     make test
-     make coverage
+     make manage createsuperuser
 
 ### Running locally
 
@@ -32,3 +32,4 @@ Simple link shortening django app
 - API: http://0.0.0.0:8000/api/
 - API docs: http://0.0.0.0:8000/api/docs/
 - API schema: http://0.0.0.0:8000/api/schema/
+- Admin: http://0.0.0.0:8000/admin/
