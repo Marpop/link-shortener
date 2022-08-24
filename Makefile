@@ -5,9 +5,6 @@ MANAGE_RUN=docker-compose run --rm $(DJANGO_CONTAINER_NAME) python manage.py
 test:
 	$(COMPOSE_RUN) pytest
 
-coverage:
-	$(COMPOSE_RUN) coverage report -m
-
 format:
 	$(COMPOSE_RUN) black . && $(COMPOSE_RUN)  isort --atomic .
 

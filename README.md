@@ -12,12 +12,11 @@ Simple link shortening django app
 
 ## Basic Commands
 
-### Test and coverage
+### Run Tests
 
      make test
-     make coverage
 
-### Type checks and linting (flake8 and pylint)
+### Run type checks and linters (flake8 and pylint)
 
      make lint
 
