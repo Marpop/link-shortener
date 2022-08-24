@@ -256,7 +256,7 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "SERVERS": [
-        {"url": "http://127.0.0.1:8000", "description": "Local Development server"},
+        {"url": "http://0.0.0.0:8000", "description": "Local Development server"},
         {"url": "https://example.com", "description": "Production server"},
     ],
 }
