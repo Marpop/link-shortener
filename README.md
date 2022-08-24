@@ -28,7 +28,6 @@ Simple link shortening django app
 
      docker-compose up
 
-- API: http://0.0.0.0:8000/api/
 - API docs: http://0.0.0.0:8000/api/docs/
 - API schema: http://0.0.0.0:8000/api/schema/
 - Admin: http://0.0.0.0:8000/admin/
