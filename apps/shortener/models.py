@@ -15,18 +15,14 @@ def get_random_string(length: int = RANDOM_STRING_LENGTH) -> str:
 class Link(models.Model):
     full = models.TextField(validators=[URLValidator()])
     short = models.CharField(
-        max_length=SHORT_MAX_LENGTH,
+        max_length=RANDOM_STRING_LENGTH,
         unique=True,
         db_index=True,
         validators=[URLValidator()],
     )
 
-    def __save__(self, *args, **kwargs):
-        if not self.short:
-            self.short = self._generate_short()
-        super().save(*args, **kwargs)
-
-    def _generate_short(self) -> str:
+    @staticmethod
+    def generate_short() -> str:
         length = RANDOM_STRING_LENGTH
         short = get_random_string(length)
         while Link.objects.filter(short=short).exists():

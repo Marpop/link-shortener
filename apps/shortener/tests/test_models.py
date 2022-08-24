@@ -11,7 +11,7 @@ class TestLink:
         assert len(get_random_string(length=5)) == 5
         assert len(get_random_string(length=6)) == 6
 
-    def test__generate_short(self):
+    def test_generate_short(self):
         link = Link.objects.create()
-        short = link._generate_short()
+        short = link.generate_short()
         assert len(short) == 5
