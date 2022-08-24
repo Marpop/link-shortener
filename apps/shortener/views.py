@@ -12,21 +12,19 @@ from apps.shortener.models import Link
 class LinkViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = Link.objects.all()
     serializer_class = serializers.LinkSerializer
-    lookup_field_field = "short"
+    lookup_field = "short"
 
     def get_full_uri(self, request, url):
         return request.build_absolute_uri(url)
 
-    def perform_create(self, serializer):
-        link = serializer.save()
-        link.short = link.generate_short()
-        link.save(update_fields=["short"])
-        return link
-
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        link = self.perform_create(serializer)
+
+        link = Link.objects.create(
+            full=serializer.validated_data["full"], short=Link.generate_short()
+        )
+
         headers = self.get_success_headers(serializer.data)
         return Response(
             {"short": self.get_full_uri(request, link.short)},
@@ -34,9 +32,9 @@ class LinkViewSet(CreateModelMixin, RetrieveModelMixin, GenericViewSet):
             headers=headers,
         )
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, short=None):
         try:
-            link = Link.objects.get(short=pk)
+            link = Link.objects.get(short=short)
             url = self.get_full_uri(request, link.full)
             return HttpResponseRedirect(redirect_to=url)
         except Link.DoesNotExist:
