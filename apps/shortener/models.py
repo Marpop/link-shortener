@@ -1,6 +1,5 @@
 import random
 from string import ascii_lowercase
-from typing import Optional
 
 from django.core.validators import URLValidator
 from django.db import IntegrityError, models
@@ -22,7 +21,7 @@ class Link(models.Model):
             self.short = self._generate_short()
         super().save(*args, **kwargs)
 
-    def _generate_short(self) -> Optional[str]:
+    def _generate_short(self) -> str:
         length = RANDOM_STRING_LENGTH
         short = get_random_string(length)
         while Link.objects.filter(short=short).exists():
