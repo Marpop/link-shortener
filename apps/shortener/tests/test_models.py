@@ -9,14 +9,11 @@ class TestLink:
     def setup(self):
         self.link = Link.objects.create(full="http://example.com", short="abcde")
 
-    def test__get_random_string(self):
+    def test_get_random_string(self):
         assert len(get_random_string()) == 5
         assert len(get_random_string(length=5)) == 5
         assert len(get_random_string(length=6)) == 6
 
-    def test__generate_short(self, mocker):
-        mocked_random = mocker.patch(
-            "apps.shortener.models.get_random_string", return_value="jnsiq"
-        )
-        assert self.link._generate_short() == "jnsiq"
-        mocked_random.assert_called_once()
+    def test__generate_short(self):
+        short = self.link._generate_short()
+        assert len(short) == 5
